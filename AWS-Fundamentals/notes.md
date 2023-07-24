@@ -10,13 +10,16 @@ When you hear the term AWS private service and public service, it is referring t
 
 ### AWS Global Infrastructure
 
+Resources:
+- https://aws.amazon.com/about-aws/global-infrastructure/
+
 #### Regions
 
 - AWS Regions are geographical areas defined by AWS, each representing a specific location in the world where AWS has set up a full deployment of its services. 
 
 - AWS can only deploy regions as fast as their planning allows. Regions are often not near their customers.
 
--  An AWS region can be identified in two ways: through its region name or its region code. e.g Region Name: Asia Pacific (Sydney) Region Code: ap-southeast-2
+-  An AWS region can be identified in two ways: through its region name or its region code. e.g Region Name: Asia Pacific (Sydney) Region Code: ap-southeast-2.
 
 
 
@@ -45,3 +48,33 @@ When you hear the term AWS private service and public service, it is referring t
 - Region Resilient: These services operate independently in each region. They typically replicate data to multiple AZs within that region, enhancing their resilience against failures.
 
 - AZ Resilient: These services run from a single AZ. Although they may have redundant equipment to handle hardware failures, they should not be solely relied upon for high availability.
+
+#### AWS Default Virtual Private Cloud (VPCs)
+
+- VPC is the service you will use to create private networks inside AWS, where other private services will run.
+
+- VPCs are also used to connect your AWS private networks to your on-premises networks when creating a hybrid environment. Additionally, VPCs enable you to connect to other cloud platforms when setting up a multi-cloud deployment.
+
+❗ You'll get lots of networking and VPC-related questions in the exam.
+
+##### VPC Basics
+ - A VPC = A Virtual Network Inside AWS.
+ - A VPC is within **1 account** & **1 region**.
+ - A VPC by default is **private** and **isolated** unless you decide otherwise.
+ - There are two types of VPC available: 
+     - Default VPC
+     - Custom VPCs 
+- ❗There can only be **one** default VPC per region.
+- You can have many custom VPCs in a region.
+
+##### Default VPC
+
+- VPC CIDR - defines the start and end ranges of the VPC. 
+    - The IP CIDR of a default VPC is **always**: 172.31.0.0/16.
+- The higher that the CIDR range slash number is, the smaller the network is e.g. a /17 is half the size of a /16
+- A strength of the default VPC is its consistent and predictable configuration.
+- Each (/20) subnet inside a VPC is located in one availability zone. This is set on creation and can never be changed.
+- Subnets are assigned a specific section of the IP ranges from the VPC. 
+    - These ranges cannot be the same as other subnets in the VPC, and they can't overlap with any subnets inside the VPC.
+    - They are configured to provide anything deployed inside those subnets with public IPv4 addresses.
+- A default VPC comes with a Internet Gateway (IGW), Security Group (SG) and Network Access Control List (NACL) pre-configured.
