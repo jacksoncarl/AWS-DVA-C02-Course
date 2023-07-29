@@ -14,13 +14,13 @@ When you hear the term AWS private service and public service, it is referring t
 
 ### Regions
 
-- AWS Regions are geographical areas defined by AWS, each representing a specific location in the world where AWS has set up a full deployment of its services. 
+- AWS Regions are geographical areas defined by AWS, each representing a specific location in the world where AWS has set up a full deployment of its services.
 
 - AWS can only deploy regions as fast as their planning allows. Regions are often not near their customers.
 
--  An AWS region can be identified in two ways: through its region name or its region code. e.g Region Name: Asia Pacific (Sydney) Region Code: ap-southeast-2.
+- An AWS region can be identified in two ways: through its region name or its region code. e.g Region Name: Asia Pacific (Sydney) Region Code: ap-southeast-2.
 
-- Regions are connected with high-speed networking. Certain services, like EC2, need to be provisioned in a specific region. On the other hand, some services, like IAM, are global in scope and are not tied to any specific region. 
+- Regions are connected with high-speed networking. Certain services, like EC2, need to be provisioned in a specific region. On the other hand, some services, like IAM, are global in scope and are not tied to any specific region.
 
 #### Benefits of Regions
 
@@ -64,20 +64,20 @@ When you hear the term AWS private service and public service, it is referring t
 - A VPC = A Virtual Network Inside AWS.
 - A VPC is within **1 account** & **1 region**.
 - A VPC by default is **private** and **isolated** unless you decide otherwise.
-- There are two types of VPC available: 
+- There are two types of VPC available:
   - Default VPC
-  - Custom VPCs 
+  - Custom VPCs
 - ❗ There can only be **one** default VPC per region.
 - You can have many custom VPCs in a region.
 
 #### Default VPC
 
-- VPC CIDR - defines the start and end ranges of the VPC. 
+- VPC CIDR - defines the start and end ranges of the VPC.
   - The IP CIDR of a default VPC is **always**: 172.31.0.0/16.
 - The higher that the CIDR range slash number is, the smaller the network is e.g. a /17 is half the size of a /16.
 - A strength of the default VPC is its consistent and predictable configuration.
 - Each (/20) subnet inside a VPC is located in one availability zone. This is set on creation and can never be changed.
-- Subnets are assigned a specific section of the IP ranges from the VPC. 
+- Subnets are assigned a specific section of the IP ranges from the VPC.
   - These ranges cannot be the same as other subnets in the VPC, and they can't overlap with any subnets inside the VPC.
   - They are configured to provide anything deployed inside those subnets with public IPv4 addresses.
 - A default VPC comes with an Internet Gateway (IGW), Security Group (SG), and Network Access Control List (NACL) pre-configured.
@@ -97,7 +97,7 @@ When you hear the term AWS private service and public service, it is referring t
     - Memory
     - Storage
     - Networking
-    - Commerical software (extra cost)
+    - Commercial software (extra cost)
 - EC2 has Local on-host storage or Elastic Block Storage (EBS).
 
 #### Instance Lifecycle
@@ -112,7 +112,7 @@ When you hear the term AWS private service and public service, it is referring t
 
 ##### Running state
 
-- When an instance is in a **running** state, you are charged for all four categories: 
+- When an instance is in a **running** state, you are charged for all four categories:
   - CPU (consumes CPU capacity even while idle)
   - Memory (uses memory even when no processing occurs)
   - Storage (OS and its data are stored on disk)
@@ -121,3 +121,21 @@ When you hear the term AWS private service and public service, it is referring t
 ##### Stopped state
 
 - When an instance is in a **stopped** state, you are only charged for storage (OS and its data are stored on disk).
+
+##### Terminated state
+
+- When an instance is **terminated**, it stops the resource usage for all categories, and deletes any allocated storage.
+
+#### AMI (Amazon Machine Image)
+
+- An AMI can be used to create an EC2 instance, or can be created from an EC2 instance.
+
+- An AMI contains:
+  - Attached permissions. These permissions control which accounts can and can't use the AMI:
+      - Public - Everyone is allowed
+      - Owner - Implicit allow, only the owner can use it to spin up new instances
+      - Explicitly - Owner grants access to AMI for specific AWS accounts
+  - Root Volume. This contains the boot volume on the instance.
+  - Block Device Mapping. This is a configuration which links the volumes that the AMI has and how they're presented to the operating system. Determines which volume is a boot volume and which volume is a data volume.
+
+#### Connecting to EC2
