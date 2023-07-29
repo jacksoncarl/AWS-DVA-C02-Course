@@ -78,3 +78,61 @@ Resources:
     - These ranges cannot be the same as other subnets in the VPC, and they can't overlap with any subnets inside the VPC.
     - They are configured to provide anything deployed inside those subnets with public IPv4 addresses.
 - A default VPC comes with a Internet Gateway (IGW), Security Group (SG) and Network Access Control List (NACL) pre-configured.
+
+#### Elastic Compute Cloud (EC2)
+
+- The default compute service within AWS.
+
+- EC2 is IAAS (Infrastructure as a service). It provides access to virtual machines known as EC2 instances.
+
+- The unit of consumption is an instance.
+
+- EC2 is a private service by-default. An EC2 instance is configured to launch into a single VPC subnet. Public access can also be configured.
+
+- If you want to allow public access for an EC2 instance, the VPC that it's running within needs to support public access. The default VPC handles this for you. However, if you use a custom VPC, then you must handle the networking on your own.
+
+- EC2 is AZ resilient. EC2 deploys into one AZ. If it fails, the instance fails.
+
+- EC2 has different instance sizes and capabilities.
+
+- EC2 offers on-demand billing (per second or per hour).
+    - Pricing based on:
+        - CPU
+        - Memory
+        - Storage
+        - Networking
+        - Commerical software (extra cost)
+
+- EC2 has Local on-host storage or Elastic Block Storage (EBS).
+
+##### Instance Lifecycle
+
+- EC2 instance has an attribute called a **state**. The state of an instance provides an indication into its condition.
+
+- Instance states:
+    - Running
+    - Stopped
+    - Terminated
+
+- When you launch an EC2 instance, after it finishes provisioning, it moves into the **running** state. An instance can then be transitioned from **running** to **stopped** when you shut it down. Once **stopped**, an instance can be moved back to **running** when you start it up again.
+
+- You can **terminate** an instance when its **running** or **stopped**. ❗This is a one way change (non-reversible action). The instance is fully deleted.
+
+###### Running state
+
+- When an instance is in a **running** state, you are charged for all four categories: 
+  - CPU (consumes CPU capacity even while idle)
+  - Memory (uses memory even when no processing occurs)
+  - Storage (OS and its data is stored on disc)
+  - Networking (networking is generally always used)
+
+###### Stoppped state
+
+- When an instance is in a **stopped** state, you are only charged for storage (OS and its data is stored on disc).
+
+
+
+
+
+
+
