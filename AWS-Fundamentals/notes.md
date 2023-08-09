@@ -183,6 +183,88 @@ When you hear the term AWS private service and public service, it is referring t
   - They must start with a lowercase letter or number.
 - ❗100 bucket soft limit, 1000 bucket hard limit per account.
 
+### CloudFormation Basics
 
+-  CloudFormation is a tool that allows you to create, update, and delete infrastructure in AWS in a consistent and repeatable way using templates.
 
+#### Templates
 
+- Templates are written in either YAML or JSON:
+
+Basic example template:
+
+```YAML
+AWSTemplateFormatVersion: "version date"
+
+Description:
+  String
+
+Metadata:
+  template metadata
+
+Parameters:
+  set of parameters
+
+Mappings:
+  set of mappings
+
+Conditions:
+  set of conditions
+
+Transform:
+  set of transforms
+
+Resources:
+  set of resources
+
+Outputs:
+  set of outputs
+```
+
+Here is a breakdown of the sections of a template:
+
+- `Resources`
+  - All templates have a list of resources, at least one. This is the only mandatory part of a CloudFormation template.
+- `Description`
+  - A free text field to describe that a resource does. This contains anything you want the users of the template to know. 
+  - ❗If you have both the `Description` field and the `AWSTemplateFormatVersion` field, then the `Description` field needs to immediately follow the `AWSTemplateFormatVersion` field. 
+- `Metadata`
+  - It's a way that you can force how the UI presents the template. 
+    - You can specify groups, you can control the order, you can add descriptions and labels.
+- `Parameters`
+  - It's a way that you can prompt the user for more information in the Console UI. 
+    - For example, you might ask the user which size of an instance to create, or what it should be named. 
+- `Mappings`
+  - This is another optional section.
+  - It allows you to create lookup tables (KVP)
+- `Conditions`
+  - Allows you to set conditions in a template. 
+    - This is a two step process:
+      - Step one: Create the condition
+      - Step two: Use condition
+- `Outputs`
+  - Once a template is finished, it can create outputs based on what's being created, updated or deleted.
+
+##### Resources section
+
+An example of the resources section inside a CloudFormation template that creates an EC2 instance: 
+
+```YAML
+Resources:
+  Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref LatestAmiId
+      Instance Type: !Ref Instance Type
+      KeyName: !Ref Keyname
+```
+
+- Resources inside a template are called logical resources.
+  - The logical resource in the example above is called `Instance`.
+  - A logical resource has a `Type` (e.g `AWS::EC2::Instance`).
+  - A logical resource has `Properties`, which CloudFormation uses to configure the resources.
+- When you give CloudFormation a template, it creates what's known as a 'stack'. 
+  - A stack contains all of the logical resources that the template tells it to contain.
+  - A stack is a living representation of a template.
+    - A template could create one, 10 or X amount of stacks.
+- It's CloudFormations job to keep the logical and physical resources in sync.
