@@ -143,7 +143,7 @@ When you hear the term AWS private service and public service, it is referring t
   - This runs on port 22.
   - You login or authenticate to that instance using what's known as an SSH key pair. 
 
-# Simple Storage Service (S3)
+### Simple Storage Service (S3)
 
 - S3 is a global storage platform.
   - It's global because it runs from all of the AWS regions and can be accessed from anywhere with an internet connection.
@@ -157,7 +157,7 @@ When you hear the term AWS private service and public service, it is referring t
   - Great for large scale data storage, distribution or upload. 
   - It can input and/or output to many AWS products. 
 
-### S3 Objects
+#### S3 Objects
 
 - An object in S3 is made up of two main components:
   - An object key (e.g. Koala.jpg - think of it as a file name in the bucket)
@@ -171,7 +171,7 @@ When you hear the term AWS private service and public service, it is referring t
   - Access Control
   - Subresources
 
-### S3 Buckets
+#### S3 Buckets
 
 - Created in a specific AWS region.
   - Data that is inside the bucket has a primary home region. Data will not leave this region unless configured to. 
